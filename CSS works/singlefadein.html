@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .quote {
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+            transform: translateX(-100%);
+            /* Start off-screen to the left */
+        }
+
+        /* Fade-in effect */
+        .fade-in {
+            opacity: 1;
+            transform: translateX(0);
+            /* End at its original position */
+        }
+    </style>
+</head>
+
+<body style="background-color: red;">
+
+    <div class="quote"
+        style="background-color: whitesmoke;font-size: 3rem;margin-top: 100px;height: 4ic;display: flex;justify-content: center;align-items: center; font-family:Acme, sans-serif;width: 100%;">
+        <p style="font-size: 4rem;"> Find everything in one spot.</p>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all elements with the class 'text'
+            const sections = document.querySelectorAll('.quote');
+
+            // Create an IntersectionObserver instance
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+
+</html>
